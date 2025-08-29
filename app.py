@@ -3,10 +3,9 @@ import os
 import ppt_generator
 from dotenv import load_dotenv
 
-# Ensure the .env file is loaded at the start
 load_dotenv()
 
-# Set up the page layout
+# Setting up the page layout done here
 st.set_page_config(
     page_title="PowerPoint Presentation Generator",
     layout="wide",
@@ -17,7 +16,7 @@ st.title("💡 AI-Powered Presentation Generator")
 st.markdown("Enter a topic below to auto-generate a professional PowerPoint presentation.")
 st.markdown("---")
 
-# User input for the topic
+# Users input 
 topic = st.text_input("Enter your presentation topic:", placeholder="e.g., The future of renewable energy")
 
 if st.button("Generate Presentation", help="Click to start the generation process."):
@@ -26,17 +25,17 @@ if st.button("Generate Presentation", help="Click to start the generation proces
     else:
         with st.spinner(f"Generating presentation on '{topic}'... This may take a few moments."):
             try:
-                # Create an instance of the generator class
+                # instance created
                 generator = ppt_generator.PowerPointGenerator()
                 
-                # Call the refactored method with the user's topic
+                # Called the refactored method with the user's topic
                 filename = generator.generate_presentation(topic=topic)
                 
                 if filename:
                     st.success("Presentation generated successfully!")
                     st.balloons()
 
-                    # Provide a download link for the file
+                    # Provided a download link for the file
                     with open(filename, "rb") as file:
                         st.download_button(
                             label="📥 Download PowerPoint File",
